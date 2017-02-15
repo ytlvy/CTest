@@ -1,5 +1,6 @@
 #include <iostream>
 #include <set>
+#include <vector>
 
 using namespace std;
 
@@ -9,8 +10,15 @@ struct StringPtrLess: public binary_function<const string *, const string *, boo
     }
 };
 
+struct DereferenceLess {
+    template<typename PtrType>
+    bool operator()(PtrType pT1, PtrType pT2) const {
+        return *pT1 < *pT2;
+    }
+};
+
 void testString() {
-    set<string *, StringPtrLess>ssp;
+    set<string *, DereferenceLess>ssp;
 
     ssp.insert(new string("Anteater"));
     ssp.insert(new string("Wombat"));
@@ -23,10 +31,32 @@ void testString() {
 
     for_each(ssp.begin(), ssp.end(), [](const string *ps){std::cout << *ps << '\n';});
 }
+void testErase() {
+
+    int x[] = {1, 2, 3, 4, 5};
+    vector<int> v(x, x+5);
+
+    for_each(v.begin(), v.end(), [](int i){printf("%d\t", i);});
+    cout<<endl;
+
+    remove(v.begin(), v.end(), 3);
+    for_each(v.begin(), v.end(), [](int i){printf("%d\t", i);});
+    cout<<endl;
+
+    v.erase(v.begin() + 2);
+    for_each(v.begin(), v.end(), [](int i){printf("%d\t", i);});
+    cout<<endl;
+}
+
+void testInsert() {
+    set<int, less_equal<int>> s;
+    s.insert(10);
+
+}
 
 
 int main(int argc, char const *argv[]) {
 
-    testString();
+    testErase();
     return 0;
 }
