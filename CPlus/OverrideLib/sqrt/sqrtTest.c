@@ -11,5 +11,6 @@
 int main(){
   double x = sqrt(100);
   printf("sqrt(100) = %f\n", x);
+
   return 0;
 }
