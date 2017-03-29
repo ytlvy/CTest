@@ -1,16 +1,17 @@
 #include <ostream>
 
 class A;
-#include "classA.h"
+// #include "classA.h"
 
 class B {
 public:
     B() {printf("B construct\n");};
     ~B(){};
     A test();
-    A test1(A a){a.test()};
+    A test1(A a);
+    // A test1(A a){a.test();};
 private:
-    A a_;
+    A *a_;
 };
 
 

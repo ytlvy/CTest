@@ -4,5 +4,6 @@ class A {
 public:
     A(){ printf("A construct\n"); };
     ~A(){};
-    test(){};
+    void test(){};
+    virtual void test1(){};
 };
