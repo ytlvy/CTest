@@ -39,11 +39,28 @@ public:
 };
 
 
-typedef 
-
 int main(int argc, char const *argv[]) {
 
-    
-
+	// int x =1, y=0;
+	// int i = --x>(y+x) ? 10:12.5>y++?'A':'Z'; 
+	// std::cout << i << '\n';
+	// 
+	// int xx = 0b1001;
+	// std::cout << (xx&xx-1) << '\n';
+	// std::cout << (xx&(xx-1)) << '\n';
+	// 
+	// int yyy = 1, y1, y3;
+	
+	long k = 11;
+	int n = 10;
+	long p1[n];
+	long *p[n];
+	for(int i=0; i<n;i++){
+		p[i] = &k;
+	}
+	
+	printf("p[0]  %p\n", p[0]);
+	printf("p[0]  %p\n", p[0]);
+	
     return 0;
 }
