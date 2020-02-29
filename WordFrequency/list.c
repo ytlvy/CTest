@@ -100,7 +100,7 @@ void wl_print(wordlist *list) {
 }
 
 
-void wl_print_numerical(wordlist *list) {
-    printf("wl_print_numerical has not ben implememented");
-}
+// void wl_print_numerical(wordlist *list) {
+//     printf("wl_print_numerical has not ben implememented");
+// }
 

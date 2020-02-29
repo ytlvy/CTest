@@ -1,10 +1,10 @@
 C_OBJS = wordfreq.o list.o
-ASM_OBJS =
+ASM_OBJS = wl_print_numerical.o
 OBJS = $(C_OBJS) $(ASM_OBJS)
 
-LFLAGS = -02 -g
-CFLAGS = -I . -02 -g -Wall
-SFLAGS = -I . -02 -g -Wall
+LFLAGS = -O2 -g -marm
+CFLAGS = -I . -O2 -g -Wall -marm
+SFLAGS = -I . -O2 -g -Wall -marm
 DEPENDFLAGS = -I . -M
 
 
