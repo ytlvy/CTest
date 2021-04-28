@@ -1,11 +1,9 @@
-//clang++ -fsanitize-coverage=trace-pc -fsanitize=address -g trace-pc.cc -o trace
-// ./trace
-// ./trace foo
-
 #include <stdint.h>
 #include <stdio.h>
-#import <dlfcn.h>
+#include <dlfcn.h>
 #include <sanitizer/coverage_interface.h>
+
+#define _HF_PERF_BITMAP_BITSZ_MASK 0x7FFFFFFULL
 
 extern "C" void __sanitizer_cov_trace_pc() {
     void *pc = __builtin_return_address(0);
@@ -21,11 +19,9 @@ extern "C" void __sanitizer_cov_trace_pc() {
     printf("\n");
 }
 
-void foo() {}
-
-int main(int argc, char **argv) {
-    if(argc>1) {
-        foo();
-    }
-    return 0;
+extern "C" void __sanitizer_cov_trace_pc_indir(uintptr_t callee) {
+    size_t pos1 = (uintptr_t)__builtin_return_address(0)<<12;
+    size_t pos2 = callee & 0xFFF;
+    size_t pos = (pos1 | pos2) & _HF_PERF_BITMAP_BITSZ_MASK;
+    printf("pos1 pos2 pos: %x %x %x\n", pos1, pos2, pos);
 }
