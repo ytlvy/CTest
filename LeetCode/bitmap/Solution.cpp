@@ -157,9 +157,34 @@ char Solution::findTheDifference(string s, string t)
     accumulate(t.begin(), t.end(), 0, bit_xor<int>());
 }
 
+
 Solution::validUtf8(vector<int> &data) 
 {
-    
+    int count = 0;
+    for(const auto& c: data) {
+        if(count == 0) {
+            if(c >> 5 == 0b110) {//2字节长度
+                count = 1;
+            }
+            else if(c >> 4 == 0b1110) {//3字节长度
+                count = 2;
+            }
+            else if(c >> 3 == 0b11110) {//4字节长度
+                count = 3;
+            }
+            else if (c >> 7 == 0b1) {//首位1的其他情况报错                               
+                return false;
+            }
+        }
+        else {
+            if(c >> 6 != 0b10) {
+                return false;
+            }
+            --count;
+        }
+    }
+
+    return count == 0;
 }
 
 int Solution::bit_count (int bits) {
@@ -196,6 +221,7 @@ vector<int> Solution::singleNumber3(vector<int> &nums)
 bool Solution::isPowerOfTwo(int n) {
     return n>0 && (n&(n-1)) == 0;
 }
+
 
 
 int Solution::rangeBitwiseAnd(int begin, int end) {
