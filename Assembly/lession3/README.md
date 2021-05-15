@@ -23,3 +23,14 @@ Process 40460 stopped
    12       pop rbp
    13       ret
 ```
+
+
+You can put a breakpoint on your destructor using the --method option,
+
+(lldb) br s -M ~WebViewImpl
+You can use the --name option with just the dtor method name too,
+
+(lldb) br s -n ~WebViewImpl
+and lldb should find it. Finally, you can pass the mangled name to breakpoint set and that will work as well,
+
+(lldb) br s -n _ZN2pf11WebViewImplD1Ev
