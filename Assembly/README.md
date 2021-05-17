@@ -1,3 +1,10 @@
+<!--
+ * @Author: Y.t
+ * @Date: 2019-09-04 10:19:27
+ * @LastEditors: Y.t
+ * @LastEditTime: 2021-05-17 09:51:10
+ * @Description: 
+-->
 ### debug
 ```
 $ clang -g -c -x assembler hello.s
@@ -94,3 +101,16 @@ di -s 0x1eb8 -c 20
 image list
 ```
 
+
+### length bug
+Solution: I needed to use -fno-integrated-as with clang to tell it to use GNU Assembler directly instead of its own built-in integrated assembler (which is suppose to be a drop-in replacement for GAS but apparently it's not). I used the following updated command to compile and run my aarch64 program without issue:
+```
+clang -nostdlib -fno-integrated-as -target aarch64-linux-gnu -s hello_world.s -o hello_world.out && ./hello_world.out
+```
+
+### voltron
+```
+voltron view stack
+voltron view registers
+{disasm,d,dis,command,c,cmd,registers,r,reg,register,memory,m,mem,stack,s,st,breakpoints,b,bp,break,backtrace,t,bt,back} ...
+```
