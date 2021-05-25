@@ -2,17 +2,21 @@
  * @Author: Y.t
  * @Date: 2021-05-24 23:07:59
  * @LastEditors: Y.t
- * @LastEditTime: 2021-05-25 09:49:31
+ * @LastEditTime: 2021-05-25 23:24:24
  * @Description:  
- * build: g++ -std=c++17 removedup.cpp -o removedup & ./removedup
+ * build: g++ removedup.cpp -o out && ./out
  */
 #include <stdio.h>
 #include <vector>
 #include <iostream>
 #include <functional>
+
+
 #include <numeric>
 #include <string>
-#include <algorithm>
+#include <algorithm>    // std::unique, std::distance
+#include <iterator>     // std::distance
+
 using namespace std;
 
 
@@ -37,11 +41,6 @@ public:
             return 0;
         }
 
-        sort(nums.begin(), nums.end(), [](const int &a, const int &b){ return a > b; });
-        // sort( nums.begin(). nums.end(), greater<int>());
-
-        printVector(nums);
-
         int index = 0;
         for (int i= 1; i < nums.size(); i++) {
             if(nums[index] != nums[i]){
@@ -49,6 +48,27 @@ public:
             }
         }
         return index + 1;
+    }
+
+    int removeDuplicates1(vector<int> &nums) {
+        auto end = unique(nums.begin(), nums.end());
+        return distance(nums.begin(), end);
+    }
+
+    int removeDuplicates2(vector<int> &nums) {
+        
+        return distance(nums.begin(), removeDuplicates(nums.begin(), 
+            nums.end(), nums.begin()));
+    }
+
+    template <typename InIt, typename OutIt>
+    OutIt removeDuplicates(InIt first, InIt last, OutIt output){
+        while (first != last) {
+            *output++ = *first;
+            first = upper_bound(first, last, *first);
+        }
+        
+        return output;
     }
 };
 
@@ -60,10 +80,16 @@ int main(int argc, char *argv[]) {
 
     vector<int> v = {2, 0, 1, 5, 9, 2, 7};
 
-    Solution solution;
-    auto length = solution.removeDuplicates(v);
+    sort(v.begin(), v.end(), [](const int &a, const int &b){ return a < b; });
+    // sort( nums.begin(). nums.end(), greater<int>());
+    
 
+    Solution solution;
+    auto v1 = v;
+    printVector(v1);
+    auto length = solution.removeDuplicates(v1);
     printVector(v, length);
+    
     
     return 0;
 }
