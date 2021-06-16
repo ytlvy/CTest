@@ -10,12 +10,34 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "clang++ build active file"
+            "preLaunchTask": "clang++ build active file",
+            "internalConsoleOptions": "openOnSessionStart",
+            // "miDebuggerArgs": "--silent",
+            // "setupCommands": [
+            //     {
+            //       "description": "Enable pretty-printing for gdb",
+            //       "text": "-enable-pretty-printing",
+            //       "ignoreFailures": true
+            //     },
+            //     {
+            //       "description": "Reduce gdb verbosity",
+            //       "text": "set print thread-events off",
+            //       "ignoreFailures": true
+            //     }
+            //   ],
+            "logging": { 
+                "moduleLoad": false, 
+                "engineLogging": false, 
+                "trace": false,
+                "exceptions": false,
+                "programOutput": true,
+                "traceResponse": false
+              }
         }
     ]
 }
