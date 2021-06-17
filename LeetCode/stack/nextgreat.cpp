@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-16 18:50:02
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-16 23:07:26
+ * @LastEditTime: 2021-06-16 23:38:00
  * @Description: 
 * build: clang++ -std=c++17 nextgreat.cpp -o out && ./out
  */
@@ -75,10 +75,26 @@ public:
         return res;
     }
     
-    vector<int> dailyTemperature(vector<int> &nums){
-        
-    }
+#define IDX i%length
 
+    ///[2,1,2,4,3]
+    ///[4,2,4,-1,4]
+    vector<int> nextGreaterElement(vector<int> &nums){
+        int length = nums.size();
+        vector<int> res(length);
+        stack<int> s;
+        
+        for(int i=2*length-1; i>=0; i--) {
+            while(!s.empty() && nums[IDX]>=s.top()){
+                s.pop();
+            }
+
+            res[IDX] = s.empty() ? -1: s.top();
+            s.push(nums[IDX]);
+        }
+
+        return res;
+    }
     
 };
 
@@ -98,6 +114,9 @@ int main(int argc, char *argv[]) {
     printVector(res);
     
     res = solution.nextGreate1(v);
+    printVector(res);
+
+    res = solution.nextGreaterElement(v1);
     printVector(res);
     
     return 0;

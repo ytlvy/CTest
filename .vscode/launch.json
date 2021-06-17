@@ -5,12 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "clang++ - build and debug active file",
+            "name": "clang++ build active file",
             "type": "cppdbg",
             "request": "launch",
+            "targetArchitecture": "x86_64",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
@@ -30,6 +31,7 @@
             //       "ignoreFailures": true
             //     }
             //   ],
+            // "launchCompleteCommand": "None",
             "logging": { 
                 "moduleLoad": false, 
                 "engineLogging": false, 
@@ -37,7 +39,8 @@
                 "exceptions": false,
                 "programOutput": true,
                 "traceResponse": false
-              }
+              },
+              "showDisplayString": false, 
         }
     ]
 }

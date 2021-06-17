@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-09 09:51:00
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-16 10:16:30
+ * @LastEditTime: 2021-06-17 09:58:42
  * @Description: 
 * build: clang++ -std=c++17 tree.cpp -o out && ./out
  */
@@ -146,16 +146,16 @@ public:
 
             //空右输出
             while(!s.empty()){
-                const TreeNode *node = s.top();
+                cur = s.top();
                 s.pop();
 
-                if(node->right == nullptr || node->right == pre){
+                if(cur->right == nullptr || cur->right == pre){
                     res.push_back(cur->val);
-                    pre = node;
+                    pre = cur;
                 }
                 else {
-                    s.push(node);
-                    cur = node->right;
+                    s.push(cur);
+                    cur = cur->right;
                     break;
                 }
             }
