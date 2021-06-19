@@ -17,7 +17,16 @@
 			"__string": "cpp",
 			"string": "cpp",
 			"string_view": "cpp",
-			"tuple": "cpp"
+			"tuple": "cpp",
+			"initializer_list": "cpp",
+			"ios": "cpp",
+			"queue": "cpp",
+			"__split_buffer": "cpp",
+			"array": "cpp",
+			"deque": "cpp",
+			"filesystem": "cpp",
+			"iterator": "cpp",
+			"set": "cpp"
 		}
 	}
 }

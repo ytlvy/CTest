@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-09 09:51:00
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-17 09:58:42
+ * @LastEditTime: 2021-06-17 16:16:12
  * @Description: 
 * build: clang++ -std=c++17 tree.cpp -o out && ./out
  */
@@ -17,6 +17,7 @@
 #include <algorithm>    // std::unique, std::distance
 #include <iterator>     // std::distance
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -204,7 +205,7 @@ public:
 
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {  
     ///        1
     ///      2    3
     ///    4   5    6

@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-05-27 19:17:04
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-16 18:51:30
+ * @LastEditTime: 2021-06-17 20:01:05
  * @Description: 
  * build: clang++ -std=c++17 longestConsecutive.cpp -o out && ./out
  */
@@ -17,22 +17,7 @@
 #include <algorithm>    // std::unique, std::distance
 #include <iterator>     // std::distance
 #include <stack>
-
-using namespace std;
-
-
-template <typename T>
-void printVector(vector<T> &v) {
-    copy(v.begin(), v.end(), ostream_iterator<T>(cout, " "));
-    cout << endl;
-}
-
-template <typename T>
-void printVector(vector<T> &v, int length) {
-    copy(v.begin(), v.begin()+length, ostream_iterator<T>(cout, " "));
-    cout << endl;
-}
-
+#include "helper.h"
 
 class Solution {
 
