@@ -73,10 +73,10 @@
 			  "-std=c++11",
 			  "-stdlib=libc++",
 			//   "-g",
-			  "${fileDirname}/*.cpp",
-			//   "${file}",
+			//   "${fileDirname}/*.cpp",
+			  "${file}",
 			  "-o",
-			  "${fileDirname}/${fileBasenameNoExtension}"
+			  "${workspaceFolder}/.build/${fileBasenameNoExtension}"
 			],
 			"options": {
 			  "cwd": "${workspaceFolder}"

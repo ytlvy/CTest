@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-17 19:59:28
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-17 20:25:43
+ * @LastEditTime: 2021-06-19 15:52:48
  * @Description: 
  */
 
@@ -30,27 +30,27 @@ void printVector(vector<T> &v, int length) {
     cout << endl;
 }
 
-TreeNode *makeTree(vector<int> &nums) {
-    if(nums.size() == 0) return nullptr;
-    queue<int> q2;
+// TreeNode *makeTree(vector<int> &nums) {
+//     if(nums.size() == 0) return nullptr;
+//     queue<int> q2;
 
-    queue<int> q1;
-    queue<TreeNode *>q_t;
+//     queue<int> q1;
+//     queue<TreeNode *>q_t;
 
-    q1.push(nums[0]);
-    TreeNode *curNode = nullptr;
+//     q1.push(nums[0]);
+//     TreeNode *curNode = nullptr;
     
-    int i =0;
-    while(i<nums.size()) {
+//     int i =0;
+//     while(i<nums.size()) {
         
         
-        while(!q1.empty()) {
-            int cur = q1.front();
-            q1.pop();
+//         while(!q1.empty()) {
+//             int cur = q1.front();
+//             q1.pop();
             
-            TreeNode *node = new TreeNode(cur);
+//             TreeNode *node = new TreeNode(cur);
             
-        }
+//         }
         
-    }
-}
+//     }
+// }

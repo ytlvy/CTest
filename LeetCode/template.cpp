@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-05-27 19:17:04
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-17 20:01:05
+ * @LastEditTime: 2021-06-19 15:53:17
  * @Description: 
  * build: clang++ -std=c++17 longestConsecutive.cpp -o out && ./out
  */
@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
 
     Solution solution;
     printVector(v1);
-    auto length = solution.findMedianSortedArrays(v, v1);
-    cout<<"find: "<<length<<endl;
+    // auto length = solution.findMedianSortedArrays(v, v1);
+    // cout<<"find: "<<length<<endl;
     
     
     return 0;
