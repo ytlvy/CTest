@@ -8,7 +8,7 @@
 			"args": [
 				"-std=c++11",
 			  "-stdlib=libc++",
-			//   "-g",
+			  "-g",
 			  "${file}",
 			  "-o",
 			  "${fileDirname}/${fileBasenameNoExtension}"
@@ -72,7 +72,7 @@
 			"args": [
 			  "-std=c++11",
 			  "-stdlib=libc++",
-			//   "-g",
+			  "-g",
 			//   "${fileDirname}/*.cpp",
 			  "${file}",
 			  "-o",

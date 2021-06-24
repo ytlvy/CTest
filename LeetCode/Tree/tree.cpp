@@ -2,11 +2,10 @@
  * @Author: Y.t
  * @Date: 2021-06-09 09:51:00
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-17 16:16:12
+ * @LastEditTime: 2021-06-24 19:48:58
  * @Description: 
 * build: clang++ -std=c++17 tree.cpp -o out && ./out
  */
-
 
 #include <stdio.h>
 #include <vector>
@@ -18,29 +17,7 @@
 #include <iterator>     // std::distance
 #include <stack>
 #include <queue>
-
-using namespace std;
-
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) :val(x), left(nullptr), right(nullptr){}
-};
-
-template <typename T>
-void printVector(vector<T> &v) {
-    copy(v.begin(), v.end(), ostream_iterator<T>(cout, " "));
-    cout << endl;
-}
-
-template <typename T>
-void printVector(vector<T> &v, int length) {
-    copy(v.begin(), v.begin()+length, ostream_iterator<T>(cout, " "));
-    cout << endl;
-}
-
+#include "../../helper.h"
 
 class Solution {
 
@@ -197,9 +174,116 @@ public:
         }
         return res;
     }
-
-    
+    //最大深度
+    int maxDepth(TreeNode *root){
+        if(root == nullptr) return 0;
+        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+    }
    
+    //最小深度
+    int minDepth(TreeNode *root) {
+        if(root == nullptr) return 0;
+
+        return minDepth_(root);
+    }
+
+    int minDepth_(TreeNode *node) {
+        //一个子树为空时，不是叶子节点要继续寻找
+        if(node == nullptr) return INT_MAX;
+
+        if(node->left == nullptr && node->right==nullptr) return 1;
+
+        return min(minDepth_(node->left), minDepth_(node->right)) + 1;
+    }
+
+    int numOfLeaves(TreeNode *root) {
+       if(root == nullptr) return 0;
+       if(root->left == nullptr && root->right == nullptr) return 1;
+
+       int left = numOfLeaves(root->left);
+       int right = numOfLeaves(root->right);
+       return left + right;
+    }
+
+    int numOfNodes(TreeNode *root){
+        if(root == nullptr) return 0;
+
+        int left = numOfNodes(root->left);
+        int right = numOfNodes(root->right);
+        return left+right+1;
+    }
+
+    int numOfLevelNodes(TreeNode *root, int k){
+        if(k < 1 || root = nullptr) return 0;
+
+        if(k==1) return 1;
+
+        int left = numOfLevelNodes(root->left, k-1);
+        int right = numOfLevelNodes(root->right, k-1);
+        return left + right;
+    }
+
+    bool isBalance(TreeNode *root) {
+
+        return maxDepth2(root) != -1;
+    }
+    
+
+    int maxDepth2(TreeNode *root) {
+        if(root == nullptr) return 0;
+
+        int left = maxDepth2(root->left);
+        int right = maxDepth2(root->right);
+        if(left == -1 || right == -1 || abs(left - right)>1) {
+            return -1;
+        }
+        return max(left, right) + 1;
+    }
+
+    bool isTreeSame(TreeNode *t1, TreeNode *t2) {
+        if(t1 == nullptr && t2 == nullptr){
+            return true;
+        }
+
+        if(t1 == nullptr || t2 == nullptr){
+            return false;
+        }
+
+        if(t1->val != t2->val) {
+            return false;
+        }
+
+        return isTreeSame(t1->left, t2->left) && isTreeSame(t1->right, t2->right);
+    } 
+
+
+    bool isMirror(TreeNode *t1, TreeNode *t2) {
+        if(t1 == nullptr && t2 == nullptr){
+            return true;
+        }
+        if(t1 == nullptr || t2 == nullptr) {
+            return false;
+        }
+
+        if(t1->val != t2->val) {
+            return false;
+        }
+
+        return isMirror(t1->left, t2->right) && isMirror(t1->right, t2->left);
+    }
+
+
+    TreeNode *mirrorTree(TreeNode *root) {
+        if(root == nullptr) {
+            return nullptr;
+        }
+
+        TreeNode *left = mirrorTree(root.left);
+        TreeNode *right = mirrorTree(root.right);
+        root->left = right;
+        root->right = left;
+        return root;
+    }
     
 };
 
@@ -220,12 +304,16 @@ int main(int argc, char *argv[]) {
     root->left->right->left = new TreeNode(7);
     root->left->right->right = new TreeNode(8);
 
+    vector<int> nodes {1, 2, 3, 4, 5, INT_MIN, 6, INT_MIN, INT_MIN, 7, 8};
+    TreeNode *root1 =nullptr;
+    makeTree(&root1, nodes);
+    
     Solution s;
 
     auto preRes = s.preOrderTraversal(root);
     printVector(preRes);
 
-    preRes = s.preOrderTraversal1(root);
+    preRes = s.preOrderTraversal1(root1);
     printVector(preRes);
 
     // preRes = s.preOrderTraversal2(root);
@@ -236,14 +324,14 @@ int main(int argc, char *argv[]) {
     preRes = s.inOrderTraversal(root);
     printVector(preRes);
 
-    preRes = s.inOrderTraversal1(root);
+    preRes = s.inOrderTraversal1(root1);
     printVector(preRes);
     
     cout<<"=======================post order"<<endl;
     preRes = s.postOrderTraversal(root);
     printVector(preRes);
 
-    preRes = s.postOrderTraversal1(root);
+    preRes = s.postOrderTraversal1(root1);
     printVector(preRes);
 
     return 0;

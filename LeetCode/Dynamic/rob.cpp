@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-17 17:47:35
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-17 20:03:39
+ * @LastEditTime: 2021-06-21 10:18:20
  * @Description: 
  * build: clang++ -std=c++11 rob.cpp -o out && ./out
  */
@@ -101,10 +101,29 @@ public:
 
         return dp_i;
     }
+
+    public:
+    int robInTree(TreeNode *root) {
+        int* res = robInTree_(root);
+        return max(res[0], res[1]);
+    }
+
+    private:
+    /* 返回一个大小为 2 的数组 arr
+    arr[0] 表示不抢 root 的话，得到的最大钱数
+    arr[1] 表示抢 root 的话，得到的最大钱数 */
+    int* robInTree_(TreeNode *node) {
+        if(node == nullptr) return new int[2]{0, 0};
+
+        int* left = robInTree_(node->left);
+        int*right = robInTree_(node->right);
+
+        int doit = node->val + left[0] + right[0];
+        int passby = max(left[0], left[1])  + max(right[0], right[1]);
+        return new int[2]{passby, doit};
+    }
     
 };
-
-
 
 int main(int argc, char *argv[]) {
     // int n[] = {9, 2, 3 , 4, 9} ;
@@ -129,6 +148,11 @@ int main(int argc, char *argv[]) {
     cout<<"find: "<<length<<endl;
 
     
+    vector<int> nodes {3, 4, 5, 1, 3, INT_MIN, 1};
+    TreeNode *root1 =nullptr;
+    makeTree(&root1, nodes);
 
+    length = solution.robInTree(root1);
+    cout<<"robInTree find: "<<length<<endl;
     return 0;
 }

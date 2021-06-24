@@ -1,14 +1,19 @@
 {
+    "env": {
+        "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/LeetCode"]
+      },
     "configurations": [
         {
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/LeetCode",
                 "/Library/Developer/CommandLineTools/usr/include/c++/v1",
                 "/usr/local/include",
                 "/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include",
                 "/Library/Developer/CommandLineTools/usr/include"
             ],
+            "forcedInclude": ["${workspaceFolder}/LeetCode/helper.h"],
             "defines": [],
             "macFrameworkPath": [
                 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
