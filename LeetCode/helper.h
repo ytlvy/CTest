@@ -2,7 +2,7 @@
  * @Author: Y.t
  * @Date: 2021-06-17 19:59:28
  * @LastEditors: Y.t
- * @LastEditTime: 2021-06-22 08:41:25
+ * @LastEditTime: 2021-06-29 23:26:34
  * @Description: 
  */
 
@@ -17,6 +17,12 @@ using namespace std;
 
 #define kMIN(s1, s2, s3)  min( min( (s1), (s2) ), (s3) )
 
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) :val(x), next(nullptr){} 
+};
 
 struct TreeNode {
     int val;
@@ -35,6 +41,42 @@ template <typename T>
 void printVector(vector<T> &v, int length) {
     copy(v.begin(), v.begin()+length, ostream_iterator<T>(cout, " "));
     cout << endl;
+}
+
+template<typename T>
+void printVectors(vector<vector<T>> &v) {
+    for(auto v_: v) {
+        copy(v_.begin(), v_.end(), ostream_iterator<T>(cout, " "));
+        cout << endl;
+    }
+}
+
+void printList(ListNode *root) {
+    cout<<"List: ";
+    while(root != nullptr) {
+        cout<<root->val<<" ";
+        root = root->next;
+    }
+    cout<<endl;
+}
+
+ListNode *makeList(vector<int> &nums) {
+    if(nums.size() == 0) return nullptr;
+
+    ListNode *root = nullptr;
+    ListNode *cur  = root;
+    for(auto i: nums) {
+        ListNode *tmp = new ListNode(i);
+        if(cur == nullptr){
+            root = tmp;
+            cur = root;
+        }
+        else {
+            cur->next = tmp;
+            cur = tmp; 
+        }
+    }
+    return root;
 }
 
 int makeTree(TreeNode **root, vector<int> &nums) {

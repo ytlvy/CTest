@@ -1,6 +1,6 @@
 {
     "env": {
-        "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/LeetCode"]
+        "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/LeetCode/**"]
       },
     "configurations": [
         {
@@ -8,6 +8,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/LeetCode",
+                "${workspaceFolder}/LeetCode/**",
                 "/Library/Developer/CommandLineTools/usr/include/c++/v1",
                 "/usr/local/include",
                 "/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include",
