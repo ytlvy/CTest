@@ -8,7 +8,7 @@
             "name": "clang++ build active file",
             "type": "cppdbg",
             "request": "launch",
-            "targetArchitecture": "x86_64",
+            "targetArchitecture": "arm64",
             "program": "${workspaceFolder}/.build/${fileBasenameNoExtension}", 
             //"${fileDirname}/${fileBasenameNoExtension}",
             "args": [],

@@ -8,11 +8,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/LeetCode",
-                "${workspaceFolder}/LeetCode/**",
-                "/Library/Developer/CommandLineTools/usr/include/c++/v1",
-                "/usr/local/include",
-                "/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include",
-                "/Library/Developer/CommandLineTools/usr/include"
+                "${workspaceFolder}/LeetCode/**"
             ],
             "forcedInclude": ["${workspaceFolder}/LeetCode/helper.h"],
             "defines": [],
@@ -21,8 +17,8 @@
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
-            "cppStandard": "c++11",
-            "intelliSenseMode": "clang-x64"
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-arm64"
         }
     ],
     "version": 4
